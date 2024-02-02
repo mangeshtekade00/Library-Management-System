@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystem.Services;
 
 import com.example.librarymanagementsystem.Entities.Student;
+import com.example.librarymanagementsystem.ReequestDtos.ModifyPhoneNoRequst;
 import com.example.librarymanagementsystem.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,19 @@ private static StudentRepository studentRepository;
            }
            Student student = optionalStudent.get();
           return student;
+
+    }
+
+    public String ModifyPhoneNo(ModifyPhoneNoRequst modifyPhoneNoRequst){
+        Integer studentId= modifyPhoneNoRequst.getStudentId();
+        String newPhoneNo = modifyPhoneNoRequst.getNewPhoneNo();
+        Student student = studentRepository.findById(studentId).get();
+
+        student.setPhoneNo(newPhoneNo);
+        studentRepository.save(student);
+
+        return "Phone number has been modified";
+
 
     }
 }

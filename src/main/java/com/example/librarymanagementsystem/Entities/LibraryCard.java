@@ -19,7 +19,7 @@ public class LibraryCard {
     private Integer cardId;
     @Enumerated(value = EnumType.STRING)
      private CardStatus cardStatus;
-     private Integer noOfBookIssued;
+     private int noOfBookIssued;
 
 
 

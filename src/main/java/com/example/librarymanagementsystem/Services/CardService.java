@@ -3,6 +3,7 @@ package com.example.librarymanagementsystem.Services;
 import com.example.librarymanagementsystem.Entities.LibraryCard;
 import com.example.librarymanagementsystem.Entities.Student;
 import com.example.librarymanagementsystem.Enums.CardStatus;
+import com.example.librarymanagementsystem.ReequestDtos.AssociateCardStudentRequest;
 import com.example.librarymanagementsystem.Repository.CardRepository;
 import com.example.librarymanagementsystem.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,15 @@ public String getFreshCard(){
     newCard.setNoOfBookIssued(0);
 
       LibraryCard savedCard = cardRepository.save(newCard);
-      return "New card with card number"+savedCard.getCardId() +"have beed genrated";
+      return "New card with Card No. "+savedCard.getCardId() +" have beed genrated";
 }
-public String associateCardAndStudent(Integer studentId, Integer cardId)throws Exception{
+public String associateCardAndStudent(AssociateCardStudentRequest associateCardStudentRequest)throws Exception{
 
-    Optional<LibraryCard>optionalLibraryCard = cardRepository.findById(cardId)
+    Integer cardId = associateCardStudentRequest.getCardId();
+    Integer studentId = associateCardStudentRequest.getStudentId();
+
+
+    Optional<LibraryCard>optionalLibraryCard = cardRepository.findById(cardId);
 
     if(optionalLibraryCard.isEmpty()){
         throw new Exception("Invalid card Id entered");
@@ -45,6 +50,8 @@ public String associateCardAndStudent(Integer studentId, Integer cardId)throws E
     libraryCard.setCardStatus(CardStatus.ACTIVE);
     libraryCard.setStudent(student);
     libraryCard.setNoOfBookIssued(0);cardRepository.save(libraryCard);
+
+    return "Card with cardId  "+cardId+" and Student with studentId "+studentId+" are associated";
 }
 }
 

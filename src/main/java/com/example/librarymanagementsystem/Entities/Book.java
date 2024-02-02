@@ -29,8 +29,15 @@ public class Book {
     private int price;
     private Date publishDate;
 
-    @JoinColumn(referencedColumnName = "emailId")
+    @JoinColumn
     @ManyToOne
     private Author author;
 
+    public Book(String bookName, Genre genre, int noOfPages, int price, Date publishDate) {
+        this.bookName = bookName;
+        this.genre = genre;
+        this.noOfPages = noOfPages;
+        this.price = price;
+        this.publishDate = publishDate;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.librarymanagementsystem.Controllers;
 
 import com.example.librarymanagementsystem.Entities.Student;
+import com.example.librarymanagementsystem.ReequestDtos.ModifyPhoneNoRequst;
 import com.example.librarymanagementsystem.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class StudentController {
          return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    @GetMapping("/findBtId")
+    @GetMapping("/findById")
 
     public ResponseEntity findStudentById(@RequestParam("StudentId") Integer studentId){
 
@@ -37,6 +38,15 @@ public class StudentController {
 
         }
 
+
+
+    }
+
+    @PutMapping("/modifyPhoneNo")
+    public String ModifyPhoneNo(@RequestBody ModifyPhoneNoRequst modifyPhoneNoRequst){
+
+         String result = studentService.ModifyPhoneNo(modifyPhoneNoRequst);
+         return result;
 
 
     }
