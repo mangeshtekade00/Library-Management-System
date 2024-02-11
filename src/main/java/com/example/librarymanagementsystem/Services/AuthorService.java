@@ -18,7 +18,7 @@ public class AuthorService {
 
           Author newAuthor = authorRepository.save(authorEntity);
 
-           return  "Author with authorId "+ newAuthor.getAuthorId()+ "has been saved to Database";
+           return  "Author with authorId "+ newAuthor.getAuthorId()+ " has been saved to Database";
 
     }
 }

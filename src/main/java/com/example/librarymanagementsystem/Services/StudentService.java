@@ -4,15 +4,24 @@ import com.example.librarymanagementsystem.Entities.Student;
 import com.example.librarymanagementsystem.ReequestDtos.ModifyPhoneNoRequst;
 import com.example.librarymanagementsystem.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 public class StudentService {
 @Autowired
-private static StudentRepository studentRepository;
-    public String addStudent(Student student){
+private  StudentRepository studentRepository;
+
+
+    public  String addStudent(Student student){
 
            Student savedStudent = studentRepository.save(student);
 
@@ -20,13 +29,14 @@ private static StudentRepository studentRepository;
 
     }
 
-    public static Student findStudentById(Integer studentId)throws Exception{
+    public  Student findStudentById(Integer studentId)throws Exception{
 
         Optional<Student> optionalStudent = studentRepository.findById(studentId);
            if(optionalStudent.isEmpty()){
                throw new Exception("Student Id entered is incorrect");
            }
            Student student = optionalStudent.get();
+
           return student;
 
     }

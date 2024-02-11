@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -28,10 +30,17 @@ public class Book {
     private int noOfPages;
     private int price;
     private Date publishDate;
+    private boolean isAvailable;
 
     @JoinColumn
     @ManyToOne
     private Author author;
+
+
+
+
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    public List<Transaction> transactionList= new ArrayList<>();
 
     public Book(String bookName, Genre genre, int noOfPages, int price, Date publishDate) {
         this.bookName = bookName;
@@ -39,5 +48,14 @@ public class Book {
         this.noOfPages = noOfPages;
         this.price = price;
         this.publishDate = publishDate;
+    }
+
+
+    public boolean getIsAvailable() {
+        return this.isAvailable;
+    }
+
+    public void setIsAvailable(Boolean aFalse) {
+        this.isAvailable=aFalse;
     }
 }

@@ -21,6 +21,8 @@ public class AddBookRequest {
     private int price;
     private Date publishDate;
 
+
+    //aditional attribute from outside
     private  Integer authorId;
 
 

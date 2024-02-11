@@ -26,7 +26,7 @@ public class StudentController {
 
 
         try{
-                  Student student = StudentService.findStudentById(studentId);
+                  Student student = studentService.findStudentById(studentId);
                   return new ResponseEntity(student,HttpStatus.OK);
 
 
